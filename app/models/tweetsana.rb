@@ -1,0 +1,2 @@
+class Tweetsana < ApplicationRecord
+end

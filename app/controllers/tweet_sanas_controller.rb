@@ -16,6 +16,19 @@ class TweetSanasController < ApplicationController
     tweet.destroy
   end
 
+  def edit
+    @tweet_sana = TweetSana.find(params[:id])
+  end
+
+  def update
+    tweet = TweetSana.find(params[:id])
+    tweet.update(tweet_params)
+  end
+
+  def show
+    @tweet = TweetSana.find(params[:id])
+  end
+
   private
   def tweet_params
     params.require(:tweet_sana).permit(:name, :image, :text)

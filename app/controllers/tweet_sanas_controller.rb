@@ -1,4 +1,6 @@
 class TweetSanasController < ApplicationController
+  before_action :set_tweet, only: [:edit, :show]
+
   def index
     @tweets = TweetSana.all
   end
@@ -17,7 +19,6 @@ class TweetSanasController < ApplicationController
   end
 
   def edit
-    @tweet_sana = TweetSana.find(params[:id])
   end
 
   def update
@@ -26,11 +27,14 @@ class TweetSanasController < ApplicationController
   end
 
   def show
-    @tweet = TweetSana.find(params[:id])
   end
 
   private
   def tweet_params
     params.require(:tweet_sana).permit(:name, :image, :text)
+  end
+
+  def set_tweet
+    @tweet_sana = TweetSana.find(params[:id])
   end
 end

@@ -1,6 +1,6 @@
 class TweetSanasController < ApplicationController
   before_action :set_tweet, only: [:edit, :show]
-  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_index, except: [:index, :show, :search]
 
   def index
     @tweets = TweetSana.includes(:user).order("created_at DESC")
@@ -30,6 +30,10 @@ class TweetSanasController < ApplicationController
   def show
     @comment = CommentSana.new
     @comments = @tweet_sana.comment_sanas.includes(:user)
+  end
+
+  def search
+    @tweets = TweetSana.search(params[:keyword])
   end
 
   private

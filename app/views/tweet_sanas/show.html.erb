@@ -1,18 +1,23 @@
 <div class="contents row">
-  <div class="content_post" style="background-image: url(<%= @tweet.image %>);">
+  <div class="content_post" style="background-image: url(<%= @tweet_sana.image %>);">
+   <% if user_signed_in? && current_user.id == @tweet.user_id %>
     <div class="more">
       <span><%= image_tag 'arrow_top.png' %></span>
       <ul class="more_list">
         <li>
-          <%= link_to '編集', edit_tweet_sana_path(@tweet.id), method: :get %>
+          <%= link_to '編集', edit_tweet_sana_path(@tweet_sana.id), method: :get %>
         </li>
         <li>
-          <%= link_to '削除', tweet_sana_path(@tweet.id), method: :delete %>
+          <%= link_to '削除', tweet_sana_path(@tweet_sana.id), method: :delete %>
         </li>
       </ul>
     </div>
-    <p><%= @tweet.text %></p>
-    <span class="name"><%= @tweet.name %>
+  <% end %>
+    <p><%= @tweet_sana.text %></p>
+    <span class="name">
+      <a href="/users/<%= @tweet_sana.user.id %>">
+        <span>投稿者</span><%= @tweet_sana.user.nickname %>
+      </a>
     </span>
   </div>
 </div>

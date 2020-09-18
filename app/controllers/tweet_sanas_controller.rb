@@ -3,7 +3,7 @@ class TweetSanasController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
 
   def index
-    @tweets = TweetSana.all
+    @tweets = TweetSana.includes(:user)
   end
 
   def new
@@ -32,7 +32,7 @@ class TweetSanasController < ApplicationController
 
   private
   def tweet_params
-    params.require(:tweet_sana).permit(:name, :image, :text)
+    params.require(:tweet_sana).permit(:image, :text).merge(user_id: current_user.id)
   end
 
   def set_tweet

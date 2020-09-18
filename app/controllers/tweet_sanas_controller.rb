@@ -28,6 +28,8 @@ class TweetSanasController < ApplicationController
   end
 
   def show
+    @comment = CommentSana.new
+    @comments = @tweet_sana.comment_sanas.includes(:user)
   end
 
   private

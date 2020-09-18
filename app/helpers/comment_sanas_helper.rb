@@ -1,0 +1,2 @@
+module CommentSanasHelper
+end
